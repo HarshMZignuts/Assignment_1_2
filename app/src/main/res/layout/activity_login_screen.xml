@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".LoginScreen">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aladin"
+        android:text="Login"
+        android:textSize="40sp"
+        android:textColor="@color/b1"
+        ></TextView>
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="30dp"
+    android:hint="@string/enter_your_email"
+    app:hintTextColor="@color/b1"
+    app:boxStrokeColor="@color/b1"
+    app:endIconMode="clear_text"
+    app:startIconDrawable="@drawable/ic_baseline_person_24"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/et_email"
+        android:inputType="textEmailAddress"
+        android:textCursorDrawable="@drawable/cursor_color"
+       >
+
+    </com.google.android.material.textfield.TextInputEditText>
+</com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        app:hintTextColor="@color/b1"
+        android:hint="Enter Your Pass word"
+        app:boxStrokeColor="@color/b1"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:id="@+id/et_pass"
+            android:textCursorDrawable="@drawable/cursor_color"
+            >
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:fontFamily="@font/aladin"
+        android:background="@drawable/button_shape"
+        android:id="@+id/btn_login"
+        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
+        ></com.google.android.material.button.MaterialButton>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New User"
+        android:fontFamily="@font/aladin"
+        android:background="@drawable/button_shape"
+        android:id="@+id/btn_new_user"
+        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
+        ></com.google.android.material.button.MaterialButton>
+</LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
