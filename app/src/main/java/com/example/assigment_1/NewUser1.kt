@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import kotlinx.android.synthetic.main.activity_login_screen.*
 import kotlinx.android.synthetic.main.activity_new_user1.*
 import java.util.regex.Pattern
 
@@ -30,6 +31,9 @@ class NewUser1 : AppCompatActivity() {
 
     private fun submite()
     {
+        var p = Patterns.EMAIL_ADDRESS
+
+
 
         if (TextUtils.isEmpty(et_new_Name.text.toString())){
             et_new_Name.setError("Name field is Empty")
@@ -41,7 +45,11 @@ class NewUser1 : AppCompatActivity() {
             et_new_Email.setError("Email filed is Empty")
             et_new_Email.requestFocus()
         }
-
+//        else if (et_new_Email.text.toString().trim() != p.toString())
+//        {
+//            et_new_Email.setError("Enter Email Properly")
+//            et_new_Email.requestFocus()
+//        }
 
         else if (TextUtils.isEmpty(et_new_pass.text.toString()))
         {
