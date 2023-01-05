@@ -17,5 +17,8 @@ class LoginScreen : AppCompatActivity() {
             var intent = Intent(applicationContext,NewUser1::class.java)
             startActivity(intent)
         }
+        btn_login.setOnClickListener {
+
+        }
     }
 }

@@ -27,18 +27,7 @@ class Helper(context: Context):SQLiteOpenHelper(context,DATABASE_NAME,null,DATAB
 
     }
 
-    fun insertClient(clt : ClientData) : Long{
-        val db = this.writableDatabase
-        val cv = ContentValues()
-        cv.put(ID,clt.id)
-        cv.put(NAME,clt.namecl)
-        cv.put(EMAIL,clt.email)
-        cv.put(PASSWORD,clt.password)
-        val success =  db.insert(TBL_CLIENT,null,cv)
-        db.close()
-        return success
 
-    }
 
 
 }
