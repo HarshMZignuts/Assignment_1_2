@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         img.startAnimation(anim)
 
         Handler().postDelayed({
-                              var intent =  Intent(applicationContext,LoginScreen::class.java)
+            var intent =  Intent(applicationContext,LoginScreen::class.java)
             startActivity(intent)
             finish()
         },5000)
