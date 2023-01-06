@@ -5,7 +5,10 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -17,22 +20,31 @@ import kotlinx.android.synthetic.main.activity_login_screen.*
 class DashBoard : AppCompatActivity() {
     lateinit var db : SQLiteDatabase
     lateinit var toogale : ActionBarDrawerToggle
+    lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
         var helper = Helper(applicationContext)
         db = helper.readableDatabase
         val navigation:NavigationView = findViewById(R.id.dah_nav_draw)
-        val drawerLayout: DrawerLayout = findViewById(R.id.dash_drawaer)
+         drawerLayout= findViewById(R.id.dash_drawaer)
 
         val SharedPreferences : SharedPreferences = getSharedPreferences("MyPreff", MODE_PRIVATE)
-
         var mymail = SharedPreferences.getString("mail","").toString()
+        //var inflate : View = layoutInflater.inflate(R.layout.draw_nav,null)
+        var inflater = LayoutInflater.from(applicationContext).inflate(R.layout.draw_nav,null)
+        //var inflate : View =  layoutInflater.inflate(R.layout.draw_nav,null,false)
+        var text1 :TextView = inflater.findViewById(R.id.drw_nav_email)
+        text1.text = mymail
+
+
             //dash_tv.text = mymail
              //var a = dash_tv.text.toString()
             //val rs = db.execSQL("SELECT Name FROM Table_Client WHERE Email == $mymail")
             // val rs =  db.rawQuery("SELECT Name FROM Table_Client WHERE Email == $mymail",null)
            //dash_tv.text = helper.getname(mymail).toString()
+
+        //this is for bottom navigation bar
         changeFragment(HomeFragment())
         bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId)
@@ -50,16 +62,17 @@ class DashBoard : AppCompatActivity() {
             true
 
         }
+        //this is menu drawer fragment
         toogale = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
         drawerLayout.addDrawerListener(toogale)
         toogale.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.side_menu_payment-> changeFragment(PaymentFragment())
-                R.id.side_menu_address-> changeFragment(AddressesFragment())
-                R.id.side_menu_password-> changeFragment(PasswordFragment())
-                R.id.side_menu_household-> changeFragment(HomeFragment())
+                R.id.side_menu_payment-> changeFragment1(PaymentFragment())
+                R.id.side_menu_address-> changeFragment1(AddressesFragment())
+                R.id.side_menu_password-> changeFragment1(PasswordFragment())
+                R.id.side_menu_household-> changeFragment1(HomeFragment())
             }
             true
         }
@@ -81,6 +94,16 @@ class DashBoard : AppCompatActivity() {
         val fragmenttransaction =  fragmentmanger.beginTransaction()
         fragmenttransaction.replace(R.id.dash_frame,fragment)
         fragmenttransaction.commit()
+
+
+    }
+    private fun changeFragment1(fragment : Fragment)
+    {
+        val fragmentmanger =  supportFragmentManager
+        val fragmenttransaction =  fragmentmanger.beginTransaction()
+        fragmenttransaction.replace(R.id.dash_frame,fragment)
+        fragmenttransaction.commit()
+        drawerLayout.closeDrawers()
 
 
     }
