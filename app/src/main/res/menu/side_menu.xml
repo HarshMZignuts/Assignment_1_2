@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+    <item
+        android:title="Payment Method"
+        android:id="@+id/side_menu_payment"
+        android:icon="@drawable/ic_baseline_payment_24"></item>
+    <item
+        android:title="Addresses"
+        android:id="@+id/side_menu_address"
+        android:icon="@drawable/ic_baseline_home_work_24"></item>
+  <item android:title="Password"
+      android:id="@+id/side_menu_password"
+      android:icon="@drawable/ic_baseline_lock_24"></item>
+    <item android:title="HouseHold"
+        android:id="@+id/side_menu_household"
+        android:icon="@drawable/ic_baseline_other_houses_24"></item>
+
+</menu>
