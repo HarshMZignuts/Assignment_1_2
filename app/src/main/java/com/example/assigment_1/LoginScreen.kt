@@ -42,8 +42,8 @@ class LoginScreen : AppCompatActivity() {
         }
 //        else if (et_email.text.toString().trim() != p.toString())
 //        {
-//            et_email.setError("Enter Email Properly")
-//            et_email.requestFocus()
+//                et_email.setError("Enter Email Properly")
+//                et_email.requestFocus()
 //        }
         else if(TextUtils.isEmpty(et_pass.text.toString()))
         {

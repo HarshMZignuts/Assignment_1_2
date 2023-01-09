@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -31,28 +32,19 @@ class DashBoard : AppCompatActivity() {
 
         val SharedPreferences : SharedPreferences = getSharedPreferences("MyPreff", MODE_PRIVATE)
         var mymail = SharedPreferences.getString("mail","").toString()
-        //var inflate : View = layoutInflater.inflate(R.layout.draw_nav,null)
-//        var inflater = LayoutInflater.from(applicationContext).inflate(R.layout.draw_nav,null)
-        //var inflate : View =  layoutInflater.inflate(R.layout.draw_nav,null,false)
-//        var text1 :TextView = inflater.findViewById(R.id.drw_nav_email)
-//        text1.text = mymail
+
         var navhederview = navigation.inflateHeaderView(R.layout.draw_nav)
         var tvheder = navhederview.findViewById<TextView>(R.id.drw_nav_email)
         var tvheader1 = navhederview.findViewById<TextView>(R.id.drw_nav_name)
         tvheder.text = mymail
         var args = listOf<String>(mymail).toTypedArray()
 
-//        var rs = db.rawQuery("SELECT Name FROM Table_Client WHERE Email == ? ",args)
-//        var rs1 =  db.execSQL("SELECT Name FROM Table_Client WHERE Email == ? ",args)
-//        //var n = rs.toString()
-//        tvheader1.text = rs1.toString()
-       //tvheader1.append(helper.getname(mymail).toString())
-            //tvheader1.text = helper.getname(email = mymail).toString()
-            //dash_tv.text = mymail
-             //var a = dash_tv.text.toString()
-            //val rs = db.execSQL("SELECT Name FROM Table_Client WHERE Email == $mymail")
-            // val rs =  db.rawQuery("SELECT Name FROM Table_Client WHERE Email == $mymail",null)
-           //dash_tv.text = helper.getname(mymail).toString()
+      var rs = db.rawQuery("SELECT Name FROM Table_Client WHERE Email = ? LIMIT 1",args)
+
+       rs.moveToNext()
+        //Log.e("@Tag", rs.getString(rs.getColumnIndex("Name")))
+      tvheader1.text = rs.getString(rs.getColumnIndex("Name"))
+
 
         //this is for bottom navigation bar
         changeFragment(HomeFragment())
