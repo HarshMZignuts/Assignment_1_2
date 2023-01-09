@@ -40,11 +40,11 @@ class LoginScreen : AppCompatActivity() {
             et_email.setError("Enter Email First")
             et_email.requestFocus()
         }
-//        else if (et_email.text.toString().trim() != p.toString())
-//        {
-//                et_email.setError("Enter Email Properly")
-//                et_email.requestFocus()
-//        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(et_email.text.toString()).matches())
+        {
+                et_email.setError("Enter Email Properly")
+                et_email.requestFocus()
+        }
         else if(TextUtils.isEmpty(et_pass.text.toString()))
         {
             et_pass.setError("Enter Password First")

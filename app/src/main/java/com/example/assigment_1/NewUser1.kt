@@ -42,11 +42,11 @@ class NewUser1 : AppCompatActivity() {
             et_new_Email.setError("Email filed is Empty")
             et_new_Email.requestFocus()
         }
-//        else if (et_new_Email.text.toString().trim() != p.toString())
-//        {
-//            et_new_Email.setError("Enter Email Properly")
-//            et_new_Email.requestFocus()
-//        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(et_new_Email.text.toString()).matches())
+        {
+            et_new_Email.setError("Enter Email Properly")
+            et_new_Email.requestFocus()
+        }
 
         else if (TextUtils.isEmpty(et_new_pass.text.toString()))
         {

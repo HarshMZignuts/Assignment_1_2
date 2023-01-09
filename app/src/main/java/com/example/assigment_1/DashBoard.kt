@@ -21,7 +21,7 @@ class DashBoard : AppCompatActivity() {
     lateinit var toogale : ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
    // lateinit var  cursor  : Cursor
-    @SuppressLint("Range")
+    @SuppressLint("Range", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
