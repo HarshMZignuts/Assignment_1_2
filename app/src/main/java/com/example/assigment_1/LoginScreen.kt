@@ -23,6 +23,7 @@ class LoginScreen : AppCompatActivity() {
 
             var intent = Intent(applicationContext,NewUser1::class.java)
             startActivity(intent)
+            finish()
         }
 
         btn_login.setOnClickListener {
@@ -37,17 +38,17 @@ class LoginScreen : AppCompatActivity() {
         var p = Patterns.EMAIL_ADDRESS
         if(TextUtils.isEmpty(et_email.text.toString()))
         {
-            et_email.setError("Enter Email First")
+            et_email.error = "Enter Email First"
             et_email.requestFocus()
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(et_email.text.toString()).matches())
         {
-                et_email.setError("Enter Email Properly")
+            et_email.error = "Enter Email Properly"
                 et_email.requestFocus()
         }
         else if(TextUtils.isEmpty(et_pass.text.toString()))
         {
-            et_pass.setError("Enter Password First")
+            et_pass.error = "Enter Password First"
             et_pass.requestFocus()
         }
         else
@@ -56,7 +57,7 @@ class LoginScreen : AppCompatActivity() {
             var rs = db.rawQuery("SELECT * FROM Table_Client WHERE Email = ? AND Password = ?",args)
             if(rs.moveToNext())
             {
-                val SharedPreferences : SharedPreferences = this.getSharedPreferences("MyPreff", MODE_PRIVATE)
+                val SharedPreferences : SharedPreferences = this.getSharedPreferences("MyPref", MODE_PRIVATE)
                 var myeditor : SharedPreferences.Editor = SharedPreferences.edit()
                 myeditor.putString("mail",et_email.text.toString())
                 myeditor.apply()

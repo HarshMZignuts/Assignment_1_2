@@ -18,17 +18,15 @@ class MainActivity : AppCompatActivity() {
 
         val img =  findViewById<ImageView>(R.id.img_view)
         val anim =  AnimationUtils.loadAnimation(this,R.anim.anim_1)
-        val shr : SharedPreferences
-        shr = getSharedPreferences("MyPreff", MODE_PRIVATE);
-        val mymail : String
-        mymail = shr.getString("mail", "").toString()
+        val shr : SharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+        val mymail : String = shr.getString("mail", "").toString()
 
 
         img.startAnimation(anim)
 
         Handler().postDelayed({
             // this is for one time login using sharedPreference
-            if(mymail != null && !mymail.equals(""))
+            if(mymail != null && mymail != "")
             {
 
                 var intent  =  Intent(applicationContext,DashBoard::class.java)

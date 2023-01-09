@@ -33,40 +33,40 @@ class NewUser1 : AppCompatActivity() {
 
 
         if (TextUtils.isEmpty(et_new_Name.text.toString())){
-            et_new_Name.setError("Name field is Empty")
+            et_new_Name.error = "Name field is Empty"
             et_new_Name.requestFocus()
 
         }
         else if (TextUtils.isEmpty(et_new_Email.text.toString()))
         {
-            et_new_Email.setError("Email filed is Empty")
+            et_new_Email.error = "Email filed is Empty"
             et_new_Email.requestFocus()
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(et_new_Email.text.toString()).matches())
         {
-            et_new_Email.setError("Enter Email Properly")
+            et_new_Email.error = "Enter Email Properly"
             et_new_Email.requestFocus()
         }
 
         else if (TextUtils.isEmpty(et_new_pass.text.toString()))
         {
-            et_new_pass.setError("Password  field is Empty")
+            et_new_pass.error = "Password  field is Empty"
             et_new_pass.requestFocus()
         }
 
         else if (et_new_pass.length() < 8)
         {
-            et_new_pass.setError("Password Must be in 8 or more char")
+            et_new_pass.error = "Password Must be in 8 or more char"
             et_new_pass.requestFocus()
         }
         else if (TextUtils.isEmpty(et_new_conf_pass.text.toString()))
         {
-            et_new_conf_pass.setError("Conform Password  field is Empty")
+            et_new_conf_pass.error = "Conform Password  field is Empty"
             et_new_conf_pass.requestFocus()
         }
         else if (et_new_conf_pass.text.toString().trim() != et_new_pass.text.toString().trim())
         {
-            et_new_conf_pass.setError("Please provide a same password")
+            et_new_conf_pass.error = "Please provide a same password"
             et_new_conf_pass.requestFocus()
         }
         else{

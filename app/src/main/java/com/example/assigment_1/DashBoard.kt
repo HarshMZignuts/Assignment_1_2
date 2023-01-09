@@ -19,8 +19,8 @@ import kotlinx.android.synthetic.main.activity_login_screen.*
 class DashBoard : AppCompatActivity() {
     lateinit var db : SQLiteDatabase
     lateinit var toogale : ActionBarDrawerToggle
-    lateinit var drawerLayout: DrawerLayout
-   // lateinit var  cursor  : Cursor
+    private lateinit var drawerLayout: DrawerLayout
+
     @SuppressLint("Range", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class DashBoard : AppCompatActivity() {
         val navigation:NavigationView = findViewById(R.id.dah_nav_draw)
          drawerLayout= findViewById(R.id.dash_drawaer)
 
-        val SharedPreferences : SharedPreferences = getSharedPreferences("MyPreff", MODE_PRIVATE)
+        val SharedPreferences : SharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE)
         var mymail = SharedPreferences.getString("mail","").toString()
 
         var navhederview = navigation.inflateHeaderView(R.layout.draw_nav)
@@ -38,24 +38,23 @@ class DashBoard : AppCompatActivity() {
         var tvheader1 = navhederview.findViewById<TextView>(R.id.drw_nav_name)
         tvheder.text = mymail
         var args = listOf<String>(mymail).toTypedArray()
-
-      var rs = db.rawQuery("SELECT Name FROM Table_Client WHERE Email = ? LIMIT 1",args)
-
+        // this is for show name in side drawer header
+        var rs = db.rawQuery("SELECT Name FROM Table_Client WHERE Email = ? LIMIT 1",args)
        rs.moveToNext()
         //Log.e("@Tag", rs.getString(rs.getColumnIndex("Name")))
       tvheader1.text = rs.getString(rs.getColumnIndex("Name"))
 
 
         //this is for bottom navigation bar
-        changeFragment(HomeFragment())
+        changeFragmentNavigationBar(HomeFragment())
         bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId)
             {
-                R.id.menu_home -> changeFragment(HomeFragment())
-                R.id.menu_vendors -> changeFragment(VendorFragment())
-                R.id.menu_category -> changeFragment(CategoryFragment())
-                R.id.menu_list -> changeFragment(ListFragment())
-                R.id.menu_more -> changeFragment(MoreFragment())
+                R.id.menu_home -> changeFragmentNavigationBar(HomeFragment())
+                R.id.menu_vendors -> changeFragmentNavigationBar(VendorFragment())
+                R.id.menu_category -> changeFragmentNavigationBar(CategoryFragment())
+                R.id.menu_list -> changeFragmentNavigationBar(ListFragment())
+                R.id.menu_more -> changeFragmentNavigationBar(MoreFragment())
                 else->{
 
 
@@ -71,10 +70,10 @@ class DashBoard : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.side_menu_payment-> changeFragment1(PaymentFragment())
-                R.id.side_menu_address-> changeFragment1(AddressesFragment())
-                R.id.side_menu_password-> changeFragment1(PasswordFragment())
-                R.id.side_menu_household-> changeFragment1(HouseHoldFragment())
+                R.id.side_menu_payment-> changeFragmentDrawer(PaymentFragment())
+                R.id.side_menu_address-> changeFragmentDrawer(AddressesFragment())
+                R.id.side_menu_password-> changeFragmentDrawer(PasswordFragment())
+                R.id.side_menu_household-> changeFragmentDrawer(HouseHoldFragment())
                 R.id.side_menu_Logout->
                 {
                     // Logout and clear SharedPreference data
@@ -104,7 +103,7 @@ class DashBoard : AppCompatActivity() {
     }
     //bottom navigation bar
 
-    private fun changeFragment(fragment : Fragment)
+    private fun changeFragmentNavigationBar(fragment : Fragment)
     {
         val fragmentmanger =  supportFragmentManager
         val fragmenttransaction =  fragmentmanger.beginTransaction()
@@ -114,7 +113,7 @@ class DashBoard : AppCompatActivity() {
 
     }
     //drawer navigation
-    private fun changeFragment1(fragment : Fragment)
+    private fun changeFragmentDrawer(fragment : Fragment)
     {
         val fragmentmanger =  supportFragmentManager
         val fragmenttransaction =  fragmentmanger.beginTransaction()
