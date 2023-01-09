@@ -1,16 +1,14 @@
 package com.example.assigment_1
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.SharedPreferences
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
@@ -21,10 +19,12 @@ class DashBoard : AppCompatActivity() {
     lateinit var db : SQLiteDatabase
     lateinit var toogale : ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
+   // lateinit var  cursor  : Cursor
+    @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
-        var helper = Helper(applicationContext)
+        var helper = Helper(this,null)
         db = helper.readableDatabase
         val navigation:NavigationView = findViewById(R.id.dah_nav_draw)
          drawerLayout= findViewById(R.id.dash_drawaer)
@@ -32,12 +32,22 @@ class DashBoard : AppCompatActivity() {
         val SharedPreferences : SharedPreferences = getSharedPreferences("MyPreff", MODE_PRIVATE)
         var mymail = SharedPreferences.getString("mail","").toString()
         //var inflate : View = layoutInflater.inflate(R.layout.draw_nav,null)
-        var inflater = LayoutInflater.from(applicationContext).inflate(R.layout.draw_nav,null)
+//        var inflater = LayoutInflater.from(applicationContext).inflate(R.layout.draw_nav,null)
         //var inflate : View =  layoutInflater.inflate(R.layout.draw_nav,null,false)
-        var text1 :TextView = inflater.findViewById(R.id.drw_nav_email)
-        text1.text = mymail
+//        var text1 :TextView = inflater.findViewById(R.id.drw_nav_email)
+//        text1.text = mymail
+        var navhederview = navigation.inflateHeaderView(R.layout.draw_nav)
+        var tvheder = navhederview.findViewById<TextView>(R.id.drw_nav_email)
+        var tvheader1 = navhederview.findViewById<TextView>(R.id.drw_nav_name)
+        tvheder.text = mymail
+        var args = listOf<String>(mymail).toTypedArray()
 
-
+//        var rs = db.rawQuery("SELECT Name FROM Table_Client WHERE Email == ? ",args)
+//        var rs1 =  db.execSQL("SELECT Name FROM Table_Client WHERE Email == ? ",args)
+//        //var n = rs.toString()
+//        tvheader1.text = rs1.toString()
+       //tvheader1.append(helper.getname(mymail).toString())
+            //tvheader1.text = helper.getname(email = mymail).toString()
             //dash_tv.text = mymail
              //var a = dash_tv.text.toString()
             //val rs = db.execSQL("SELECT Name FROM Table_Client WHERE Email == $mymail")
@@ -72,13 +82,26 @@ class DashBoard : AppCompatActivity() {
                 R.id.side_menu_payment-> changeFragment1(PaymentFragment())
                 R.id.side_menu_address-> changeFragment1(AddressesFragment())
                 R.id.side_menu_password-> changeFragment1(PasswordFragment())
-                R.id.side_menu_household-> changeFragment1(HomeFragment())
+                R.id.side_menu_household-> changeFragment1(HouseHoldFragment())
+                R.id.side_menu_Logout->
+                {
+                    // Logout and clear SharedPreference data
+                    var shareditor = SharedPreferences.edit()
+                    shareditor.clear()
+                    shareditor.commit()
+                    var intent = Intent(applicationContext,LoginScreen::class.java)
+                    startActivity(intent)
+                    finish()
+
+                }
             }
             true
         }
 
 
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toogale.onOptionsItemSelected(item))
@@ -87,6 +110,7 @@ class DashBoard : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    //bottom navigation bar
 
     private fun changeFragment(fragment : Fragment)
     {
@@ -97,6 +121,7 @@ class DashBoard : AppCompatActivity() {
 
 
     }
+    //drawer navigation
     private fun changeFragment1(fragment : Fragment)
     {
         val fragmentmanger =  supportFragmentManager

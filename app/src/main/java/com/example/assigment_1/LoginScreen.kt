@@ -2,7 +2,6 @@ package com.example.assigment_1
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +17,7 @@ class LoginScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_screen)
-        var helper = Helper(applicationContext)
+        var helper = Helper(this,null)
         db = helper.readableDatabase
         btn_new_user.setOnClickListener {
 
@@ -30,6 +29,7 @@ class LoginScreen : AppCompatActivity() {
 
             login()
         }
+
 
 
     }
@@ -63,6 +63,7 @@ class LoginScreen : AppCompatActivity() {
                 myeditor.commit()
                 var intent =  Intent(applicationContext,DashBoard::class.java)
                 startActivity(intent)
+                finish()
 
             }
             else

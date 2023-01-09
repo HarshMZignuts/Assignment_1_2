@@ -4,14 +4,11 @@ import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
-import kotlinx.android.synthetic.main.activity_login_screen.*
 import kotlinx.android.synthetic.main.activity_new_user1.*
-import java.util.regex.Pattern
 
 class NewUser1 : AppCompatActivity() {
     lateinit var db : SQLiteDatabase
@@ -19,7 +16,7 @@ class NewUser1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_user1)
-        var helper = Helper(applicationContext)
+        var helper = Helper(this,null)
         db = helper.readableDatabase
         btn_new_sub.setOnClickListener {
 

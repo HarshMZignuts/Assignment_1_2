@@ -1,6 +1,7 @@
 package com.example.assigment_1
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -17,12 +18,29 @@ class MainActivity : AppCompatActivity() {
 
         val img =  findViewById<ImageView>(R.id.img_view)
         val anim =  AnimationUtils.loadAnimation(this,R.anim.anim_1)
+        val shr : SharedPreferences
+        shr = getSharedPreferences("MyPreff", MODE_PRIVATE);
+        val mymail : String
+        mymail = shr.getString("mail", "").toString()
+
+
         img.startAnimation(anim)
 
         Handler().postDelayed({
+            // this is for one time login using sharedPreference
+            if(mymail != null && !mymail.equals(""))
+            {
+
+                var intent  =  Intent(applicationContext,DashBoard::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else
+            {
             var intent =  Intent(applicationContext,LoginScreen::class.java)
             startActivity(intent)
             finish()
+            }
         },5000)
 
 

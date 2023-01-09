@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
+    <group>
     <item
         android:title="Payment Method"
         android:id="@+id/side_menu_payment"
@@ -17,5 +18,15 @@
     <item android:title="HouseHold"
         android:id="@+id/side_menu_household"
         android:icon="@drawable/ic_baseline_other_houses_24"></item>
+    </group>
+    <group>
+
+        <item
+            android:title="Logout"
+            android:id="@+id/side_menu_Logout"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            ></item>
+
+    </group>
 
 </menu>

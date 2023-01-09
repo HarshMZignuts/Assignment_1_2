@@ -5,9 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".LoginScreen">
 
+    tools:context=".LoginScreen">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/wave"></View>
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+
+    >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,6 +98,7 @@
         android:layout_marginTop="20dp"
         android:layout_margin="20dp"
         ></com.google.android.material.button.MaterialButton>
+</LinearLayout>
 </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
